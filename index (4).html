@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pallab Kumar Gorain | Legal Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ovo&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN config (must be before the CDN script) -->
+    <script>
+      tailwindConfig = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Rubik', 'sans-serif'],
+              serif: ['Ovo', 'serif'],
+            },
+            animation: {
+              'spin-slow': 'spin 10s linear infinite',
+              'fade-in': 'fadeIn .6s ease forwards',
+              'fade-in-up': 'fadeInUp .6s ease forwards',
+              'fade-in-down': 'fadeInDown .6s ease forwards'
+            },
+            colors: {
+              'brand-gold': '#c0a062',
+              'brand-dark': '#1a1a1a',
+              'brand-light': '#f5f5f5'
+            }
+          }
+        }
+      }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      .dark ::-webkit-scrollbar-track { background: #2d2d2d; }
+      ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+      /* Small custom animations used with utility classes */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fadeIn .6s ease forwards; }
+      .animate-fade-in-up { animation: fadeInUp .6s ease forwards; }
+      .animate-fade-in-down { animation: fadeInDown .6s ease forwards; }
+
+      /* Mobile sliding menu */
+      .menu-panel { transition: transform .28s cubic-bezier(.2,.9,.2,1); }
+      .menu-closed { transform: translateX(100%); }
+      .menu-open { transform: translateX(0); }
+
+      /* Thin centerline for timeline on small screens */
+      @media (max-width: 767px) {
+        .timeline-center { left: 1rem; transform: none; }
+      }
+
+      /* Make anchor outlines nice for keyboard users */
+      :focus { outline: 2px solid rgba(192,160,98,0.35); outline-offset: 2px; border-radius: 4px; }
+    </style>
+  </head>
+
+  <body class="bg-brand-light dark:bg-brand-dark text-gray-800 dark:text-gray-200 font-sans antialiased">
+    <!-- Header -->
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <a href="#home" class="text-2xl font-bold font-serif text-brand-gold hover:opacity-80 transition-opacity">PKG</a>
+
+          <nav id="desktop-nav" class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Home</a>
+            <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">About</a>
+            <a href="#services" class="nav-link text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Services</a>
+            <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Experience</a>
+            <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Contact</a>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" title="Toggle theme">
+              <!-- Icon swapped via JS -->
+              <svg id="icon-sun" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <svg id="icon-moon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+
+            <div class="md:hidden">
+              <button id="mobile-menu-toggle" aria-label="Toggle menu" class="p-2">
+                <svg id="icon-menu-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div id="mobile-menu" class="md:hidden fixed top-20 right-0 h-[calc(100vh-5rem)] w-64 bg-white dark:bg-brand-dark shadow-lg menu-panel menu-closed">
+        <nav class="flex flex-col p-8 space-y-6">
+          <a href="#home" class="mobile-link text-xl text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Home</a>
+          <a href="#about" class="mobile-link text-xl text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">About</a>
+          <a href="#services" class="mobile-link text-xl text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Services</a>
+          <a href="#experience" class="mobile-link text-xl text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Experience</a>
+          <a href="#contact" class="mobile-link text-xl text-gray-700 dark:text-gray-300 hover:text-brand-gold transition-colors font-medium">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <!-- HERO -->
+      <section id="home" class="relative h-screen flex items-center justify-center text-white">
+        <div class="absolute inset-0 bg-cover bg-center" id="hero-bg" style="background-image: url('https://raw.githubusercontent.com/Pallab-office-LAW-1/GORAIN-office-LAW/eccb00d5a2385213dfbc75ba61b1b766c3c1717c/supreme-court-gandhi.jpg')">
+          <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+          <h3 class="text-lg md:text-xl font-serif text-brand-gold mb-4 animate-fade-in-down">Welcome - Namaste!</h3>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-4 animate-fade-in">Advocate Pallab Kumar Gorain</h1>
+          <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-8 animate-fade-in-up">Driven by passion, purpose, and professionalism in India's justice system.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay:.5s">
+            <a href="#contact" class="w-full sm:w-auto px-8 py-3 bg-brand-gold text-white font-bold rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">Schedule Consultation</a>
+            <a href="/resume.pdf" download="Pallab_Kumar_Gorain_Resume.pdf" class="w-full sm:w-auto px-8 py-3 border-2 border-brand-gold text-white font-bold rounded-md hover:bg-brand-gold transition-all duration-300 transform hover:scale-105">My Resume</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-serif">About Me</h2>
+          <div class="grid md:grid-cols-5 gap-12 items-center">
+            <div class="md:col-span-2">
+              <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/GORAIN-office-LAW/eccb00d5a2385213dfbc75ba61b1b766c3c1717c/lady-justice.jpg" alt="Lady Justice" class="rounded-lg shadow-2xl w-full h-auto object-cover" />
+            </div>
+            <div class="md:col-span-3">
+              <p class="text-lg mb-4 text-gray-700 dark:text-gray-300">I'm Pallab Kumar Gorain, a committed and enthusiastic law student currently pursuing my B.A.LL.B. degree from Imamul Hai Khan Law College, Bokaro. Alongside my academic journey, I am gaining real-time legal experience by practising at the Purulia District Court, West Bengal.</p>
+              <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">Driven by passion, purpose, and professionalism, I've committed myself to learning and contributing to India's justice system with integrity, empathy, and deep-rooted constitutional values.</p>
+              <blockquote class="border-l-4 border-brand-gold pl-4 italic text-gray-600 dark:text-gray-400">"Justice is not a service—it's a duty. And I'm here to serve."</blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="py-20 bg-brand-light dark:bg-brand-dark">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold font-serif">Areas of Legal Interest</h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Wide-ranging legal interests with special focus on practical litigation and constitutional law.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Law Icon -->
+                <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 7v1.118l-1.464.832A1 1 0 001 9.832V17a1 1 0 001 1h16a1 1 0 001-1V9.832a1 1 0 00-.536-.882L17 8.118V7a1 1 0 00-.496-.868l-7-4zM5 16V9.832l1.464-.832L10 11.168l3.536-2.168L15 9.832V16H5zM4.536 7.132L10 4.168l5.464 2.964L10 10.168 4.536 7.132z" clip-rule="evenodd"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Criminal Law</h3>
+              <p class="text-gray-600 dark:text-gray-400">Understanding FIRs, bail applications, IPC offences and criminal procedures.</p>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Lady Justice Icon -->
+                <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.7 9.7l.086 4.384a2 2 0 002.32 1.916l.4-.08a2 2 0 011.96 0l.4.08a2 2 0 002.32-1.916l.086-4.384m-4.5 0l-2.5-4.5M12 15V5.5M12 15l2.5-4.5M12 15l-2.5 4.5m2.5-4.5l2.5 4.5"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Family Law</h3>
+              <p class="text-gray-600 dark:text-gray-400">Divorce, maintenance, domestic violence, and guardianship matters.</p>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Scroll Icon -->
+                <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Constitutional Law</h3>
+              <p class="text-gray-600 dark:text-gray-400">Rights-based jurisprudence, Article 21, PILs and constitutional matters.</p>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Gavel Icon -->
+                <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Property Law</h3>
+              <p class="text-gray-600 dark:text-gray-400">Land disputes, registration, mutation and property documentation.</p>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Pen Icon -->
+                <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Legal Drafting</h3>
+              <p class="text-gray-600 dark:text-gray-400">Structured pleadings, legal notices and professional documentation.</p>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div class="text-brand-gold mb-4">
+                <!-- Research Icon -->
+                <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 font-serif">Legal Research</h3>
+              <p class="text-gray-600 dark:text-gray-400">Case law research using SCC Online, Indian Kanoon and legal databases.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold font-serif">Academic Journey & Court Practice</h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A timeline of academic growth and practical legal experience.</p>
+          </div>
+
+          <!-- Timeline -->
+          <div class="relative max-w-3xl mx-auto">
+            <div class="absolute left-1/2 w-0.5 h-full bg-gray-300 dark:bg-gray-700 transform -translate-x-1/2 timeline-center"></div>
+
+            <!-- timeline items -->
+            <div class="mb-8 flex justify-between items-center w-full flex-row-reverse">
+              <div class="order-1 w-5/12"></div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">21</h1>
+              </div>
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Enrolled in B.A.LL.B. Course</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Started integrated law degree at Imamul Hai Khan Law College, Bokaro.</p>
+              </div>
+            </div>
+
+            <div class="mb-8 flex justify-between items-center w-full">
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Beginning Court Practice</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Started gaining practical experience at Purulia District Court.</p>
+              </div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">22</h1>
+              </div>
+              <div class="order-1 w-5/12"></div>
+            </div>
+
+            <div class="mb-8 flex justify-between items-center w-full flex-row-reverse">
+              <div class="order-1 w-5/12"></div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">23</h1>
+              </div>
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Legal Research & Documentation</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Enhanced skills in case law research using SCC Online and Indian Kanoon.</p>
+              </div>
+            </div>
+
+            <div class="mb-8 flex justify-between items-center w-full">
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Advanced Legal Training</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Focusing on constitutional law, criminal procedures, and family law.</p>
+              </div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">24</h1>
+              </div>
+              <div class="order-1 w-5/12"></div>
+            </div>
+
+            <div class="mb-8 flex justify-between items-center w-full flex-row-reverse">
+              <div class="order-1 w-5/12"></div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">25</h1>
+              </div>
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Preparing for Legal Career</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Building foundation for future legal practice and judicial service.</p>
+              </div>
+            </div>
+
+            <div class="mb-8 flex justify-between items-center w-full">
+              <div class="order-1 bg-brand-light dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-2 font-bold text-gray-800 dark:text-white text-lg font-serif">Future Legal Practice</h3>
+                <p class="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">Establishing independent legal practice and contributing to justice system.</p>
+              </div>
+              <div class="z-20 flex items-center order-1 bg-brand-gold shadow-xl w-8 h-8 rounded-full">
+                <h1 class="mx-auto font-semibold text-sm text-white">28</h1>
+              </div>
+              <div class="order-1 w-5/12"></div>
+            </div>
+          </div>
+
+          <!-- References -->
+          <div class="mt-24">
+            <div class="text-center mb-12">
+              <h3 class="text-2xl md:text-3xl font-bold font-serif">Academic & Professional References</h3>
+              <p class="mt-3 text-md text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">What mentors and colleagues say about my dedication to legal studies.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+              <div class="bg-brand-light dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                <p class="italic text-gray-600 dark:text-gray-400 mb-4">"Pallab's dedication to understanding legal concepts and practical application is impressive. A promising future lawyer."</p>
+                <p class="font-bold text-gray-800 dark:text-white">Senior Advocate M. Sharma</p>
+                <p class="text-sm text-brand-gold">Mentor at Purulia Court</p>
+              </div>
+
+              <div class="bg-brand-light dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                <p class="italic text-gray-600 dark:text-gray-400 mb-4">"His research skills and attention to detail in legal documentation are exceptional for a student."</p>
+                <p class="font-bold text-gray-800 dark:text-white">Prof. R. Das</p>
+                <p class="text-sm text-brand-gold">Faculty, Imamul Hai Khan Law College</p>
+              </div>
+
+              <div class="bg-brand-light dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                <p class="italic text-gray-600 dark:text-gray-400 mb-4">"Pallab combines academic knowledge with practical insight. His commitment to justice is evident."</p>
+                <p class="font-bold text-gray-800 dark:text-white">A. Sengupta</p>
+                <p class="text-sm text-brand-gold">Court Clerk, Purulia District Court</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="py-20 bg-brand-light dark:bg-brand-dark">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold font-serif">Contact & Appointment</h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Ready to discuss your legal matter? Get in touch for a consultation.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-5 gap-12">
+            <!-- Contact Info -->
+            <div class="lg:col-span-2">
+              <h3 class="text-2xl font-bold mb-6 font-serif">Get in Touch</h3>
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-brand-gold mt-1">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-bold">Address</h4>
+                    <p class="text-gray-600 dark:text-gray-400">Purulia, West Bengal</p>
+                    <p class="text-gray-600 dark:text-gray-400">Working Office: Purulia Court</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-brand-gold mt-1">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-bold">Phone</h4>
+                    <a href="tel:+918145760110" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">+91-8145760110</a>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-brand-gold mt-1">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-bold">Email</h4>
+                    <a href="mailto:pallabgorain50@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">pallabgorain50@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-3 bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
+              <h3 class="text-2xl font-bold mb-6 font-serif">Book Appointment</h3>
+              <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
+              <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6" id="contact-form">
+                <div>
+                  <label for="full-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name *</label>
+                  <input type="text" name="name" id="full-name" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address *</label>
+                  <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone Number *</label>
+                  <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
+                <div>
+                  <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Brief Description *</label>
+                  <textarea name="message" id="description" rows="4" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                </div>
+
+                <div>
+                  <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-brand-gold hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold font-bold transition-all transform hover:scale-105">Send Appointment Request</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0">
+          <div>
+            <a href="#home" class="text-3xl font-bold font-serif text-brand-gold hover:opacity-80 transition-opacity">PKG</a>
+            <p class="mt-2 text-gray-500 dark:text-gray-400 max-w-sm">Committed law student and legal intern, building a foundation for future legal practice with integrity and dedication.</p>
+          </div>
+
+          <div class="flex flex-col items-center md:items-start">
+            <h4 class="font-bold text-lg mb-3">Quick Links</h4>
+            <div class="flex flex-col space-y-2">
+              <a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">About</a>
+              <a href="#services" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">Services</a>
+              <a href="#experience" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">Experience</a>
+              <a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-lg mb-3">Contact Info</h4>
+            <p class="text-gray-600 dark:text-gray-400">Purulia Court</p>
+            <p class="text-gray-600 dark:text-gray-400">Purulia, West Bengal</p>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">pallabgorain50@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400">
+          <p>© <span id="current-year"></span> Pallab Kumar Gorain. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Small JS for interactivity and theme persistence -->
+    <script>
+      (function () {
+        // Elements
+        const htmlEl = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const iconSun = document.getElementById('icon-sun');
+        const iconMoon = document.getElementById('icon-moon');
+        const header = document.getElementById('site-header');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenuOpen = document.getElementById('icon-menu-open');
+        const iconMenuClose = document.getElementById('icon-menu-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const desktopLinks = document.querySelectorAll('.nav-link');
+
+        // Initial year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // THEME: load preference or system
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let theme = storedTheme || (prefersDark ? 'dark' : 'light');
+        setTheme(theme);
+
+        function setTheme(t) {
+          if (t === 'dark') {
+            htmlEl.classList.add('dark');
+            iconSun.classList.remove('hidden');
+            iconMoon.classList.add('hidden');
+          } else {
+            htmlEl.classList.remove('dark');
+            iconSun.classList.add('hidden');
+            iconMoon.classList.remove('hidden');
+          }
+          localStorage.setItem('theme', t);
+        }
+
+        themeToggle.addEventListener('click', () => {
+          theme = (htmlEl.classList.contains('dark') ? 'light' : 'dark');
+          setTheme(theme);
+        });
+
+        // HEADER: change background on scroll
+        function onScroll() {
+          if (window.scrollY > 10) {
+            header.classList.add('bg-white/80', 'dark:bg-brand-dark/80', 'backdrop-blur-sm', 'shadow-md');
+          } else {
+            header.classList.remove('bg-white/80', 'dark:bg-brand-dark/80', 'backdrop-blur-sm', 'shadow-md');
+          }
+        }
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // MOBILE MENU: toggle
+        let menuOpen = false;
+        function openMenu() {
+          mobileMenu.classList.remove('menu-closed');
+          mobileMenu.classList.add('menu-open');
+          iconMenuOpen.classList.add('hidden');
+          iconMenuClose.classList.remove('hidden');
+          menuOpen = true;
+        }
+        function closeMenu() {
+          mobileMenu.classList.add('menu-closed');
+          mobileMenu.classList.remove('menu-open');
+          iconMenuOpen.classList.remove('hidden');
+          iconMenuClose.classList.add('hidden');
+          menuOpen = false;
+        }
+
+        mobileMenuToggle.addEventListener('click', function () {
+          if (menuOpen) closeMenu(); else openMenu();
+        });
+
+        // Close mobile menu when link clicked
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            closeMenu();
+          });
+        });
+
+        // Smooth-scrolling for all nav links
+        function enableSmoothScroll(links) {
+          links.forEach(link => {
+            link.addEventListener('click', (e) => {
+              const href = link.getAttribute('href');
+              if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                  const yOffset = -72; // header offset
+                  const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }
+            });
+          });
+        }
+
+        enableSmoothScroll([...desktopLinks, ...document.querySelectorAll('.mobile-link'), document.querySelectorAll('a[href^="#"]')]);
+
+        // Basic client-side form enhancement: disable button after submit to prevent multiple sends
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function (e) {
+            const btn = contactForm.querySelector('button[type="submit"]');
+            if (btn) {
+              btn.disabled = true;
+              btn.classList.add('opacity-70', 'cursor-not-allowed');
+              btn.textContent = 'Sending...';
+            }
+          });
+        }
+
+        // ensure focus-visible / accessibility improvements: trap nothing, keep simple
+      })();
+    </script>
+  </body>
+</html>
